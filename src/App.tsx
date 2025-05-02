@@ -10,6 +10,12 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Students from "./pages/Students";
+import Attendance from "./pages/Attendance";
+import Academic from "./pages/Academic";
+import SDG from "./pages/SDG";
+import Messages from "./pages/Messages";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -53,11 +59,57 @@ const App = () => (
               } 
             />
             
-            {/* Redirect / to /dashboard if logged in */}
             <Route 
-              path="/" 
+              path="/students" 
               element={
-                <Home />
+                <ProtectedRoute>
+                  <Students />
+                </ProtectedRoute>
+              } 
+            />
+            
+            <Route 
+              path="/attendance" 
+              element={
+                <ProtectedRoute>
+                  <Attendance />
+                </ProtectedRoute>
+              } 
+            />
+            
+            <Route 
+              path="/academic" 
+              element={
+                <ProtectedRoute>
+                  <Academic />
+                </ProtectedRoute>
+              } 
+            />
+            
+            <Route 
+              path="/sdg" 
+              element={
+                <ProtectedRoute>
+                  <SDG />
+                </ProtectedRoute>
+              } 
+            />
+            
+            <Route 
+              path="/messages" 
+              element={
+                <ProtectedRoute>
+                  <Messages />
+                </ProtectedRoute>
+              } 
+            />
+            
+            <Route 
+              path="/settings" 
+              element={
+                <ProtectedRoute>
+                  <Settings />
+                </ProtectedRoute>
               } 
             />
             
