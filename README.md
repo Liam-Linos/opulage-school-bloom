@@ -1,73 +1,74 @@
-# Welcome to your Lovable project
 
-## Project info
+# Opulage Sustainable Schools Manager
 
-**URL**: https://lovable.dev/projects/708756e7-a111-4a30-8944-5b573cc5e98f
+A full-stack, open-source web application for managing primary and secondary schools in developing countries, with integrated Sustainable Development Goals (SDGs) tracking.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- 🏫 **School Management**: Student records, teacher/staff profiles, class management
+- 📊 **Attendance Tracking**: Record and monitor attendance for students and staff
+- 📝 **Academic Performance**: Track and report on student academic progress
+- 🌱 **SDG Tracking**: Set sustainability goals and monitor progress
+- 📱 **Responsive Design**: Works on desktop and mobile devices
+- 🔒 **Role-Based Access**: Different views for administrators, teachers, students, and parents
 
-**Use Lovable**
+## Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/708756e7-a111-4a30-8944-5b573cc5e98f) and start prompting.
+- **Frontend**: React with TypeScript, Tailwind CSS, shadcn/ui components
+- **State Management**: React Context API, React Query
+- **Authentication**: JWT-based authentication (simulated in demo)
 
-Changes made via Lovable will be committed automatically to this repo.
+## Getting Started
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js & npm
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Installation
 
-Follow these steps:
+1. Clone the repository
+   ```
+   git clone https://github.com/yourusername/opulage-schools.git
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. Navigate to project directory
+   ```
+   cd opulage-schools
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+3. Install dependencies
+   ```
+   npm install
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+4. Start the development server
+   ```
+   npm run dev
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+5. Open your browser to the displayed URL (usually http://localhost:8080)
 
-**Edit a file directly in GitHub**
+## Demo Accounts
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+For testing purposes, you can use the following demo accounts:
 
-**Use GitHub Codespaces**
+- **Admin**: admin@school.edu (password: password)
+- **Teacher**: johnson@school.edu (password: password)
+- **Student**: alex@school.edu (password: password)
+- **Parent**: smith@email.com (password: password)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Structure
 
-## What technologies are used for this project?
+- `/src/components` - Reusable UI components
+- `/src/contexts` - React contexts for state management
+- `/src/pages` - Main application pages
+- `/src/types` - TypeScript type definitions
+- `/src/data` - Mock data for demonstration purposes
 
-This project is built with:
+## Contributing
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## How can I deploy this project?
+## License
 
-Simply open [Lovable](https://lovable.dev/projects/708756e7-a111-4a30-8944-5b573cc5e98f) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This project is open source and available under the [MIT License](LICENSE).

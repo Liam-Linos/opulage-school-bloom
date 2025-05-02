@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,44 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Custom colors for our app
+				'forest': {
+					50: '#ecf8f0',
+					100: '#d0edda',
+					200: '#a3dbb7',
+					300: '#76c994',
+					400: '#4eb778',
+					500: '#2E7D32', // primary forest green
+					600: '#256429',
+					700: '#1d4b1f',
+					800: '#153215',
+					900: '#0e190c',
+				},
+				'amber': {
+					50: '#fff9e6',
+					100: '#ffefc0',
+					200: '#ffdf80',
+					300: '#ffcf40',
+					400: '#FFC107', // secondary amber
+					500: '#e6ac00',
+					600: '#cc9900',
+					700: '#997300',
+					800: '#664d00',
+					900: '#332600',
+				},
+				'teal': {
+					50: '#e0f2f1',
+					100: '#b2dfdb',
+					200: '#80cbc4',
+					300: '#4DB6AC', // accent teal
+					400: '#26a69a',
+					500: '#009688',
+					600: '#00897b',
+					700: '#00796b',
+					800: '#00695c',
+					900: '#004d40',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +122,22 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
 			}
 		}
 	},
