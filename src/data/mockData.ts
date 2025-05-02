@@ -273,7 +273,7 @@ export const mockMessages: Message[] = [
     id: 'msg2',
     senderId: 'parent1',
     recipientId: 'teacher1',
-    content: 'Thank you for letting me know. We've been practicing at home as well.',
+    content: "Thank you for letting me know. We've been practicing at home as well.",
     sentAt: '2024-04-30T19:05:00',
     readAt: '2024-05-01T08:30:00'
   },
