@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
+import { Users, Calendar, BarChart2 } from 'lucide-react';
 
 const Home = () => {
   const { user } = useAuth();
