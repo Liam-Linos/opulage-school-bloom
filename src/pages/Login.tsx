@@ -11,7 +11,6 @@ import { RoleBadge } from '@/components/ui/role-badge';
 import { UserRole } from '@/types';
 import { useToast } from '@/components/ui/use-toast';
 import { Switch } from '@/components/ui/switch';
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -26,16 +25,16 @@ const Login = () => {
 
   // Default test emails for different roles
   const roleEmails: Record<UserRole, string> = {
-    admin: 'admin@opulage.edu',
-    teacher: 'teacher@opulage.edu',
-    student: 'student@opulage.edu',
-    parent: 'parent@opulage.edu'
+    admin: 'admin@school.edu',
+    teacher: 'teacher@school.edu',
+    student: 'student@school.edu',
+    parent: 'parent@school.edu'
   };
 
   // Auto-select demo account on load
   useEffect(() => {
     setEmail(roleEmails[selectedRole]);
-  }, []);
+  }, [selectedRole]);
 
   const handleRoleSelect = (role: UserRole) => {
     setSelectedRole(role);
