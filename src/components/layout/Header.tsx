@@ -5,6 +5,7 @@ import { Bell, LogOut } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { RoleBadge } from '@/components/ui/role-badge';
 import { 
   DropdownMenu, 
   DropdownMenuTrigger, 
@@ -56,9 +57,7 @@ const Header = () => {
                 <div className="px-4 py-2">
                   <p className="text-sm font-medium">{user.name}</p>
                   <p className="text-xs text-muted-foreground">{user.email}</p>
-                  <p className="text-xs uppercase tracking-wider mt-1 text-amber-500 font-medium">
-                    {user.role}
-                  </p>
+                  <RoleBadge role={user.role} className="mt-1" />
                 </div>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
