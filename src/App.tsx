@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Students from "./pages/Students";
+import StudentProfile from "./pages/StudentProfile";
 import Attendance from "./pages/Attendance";
 import Academic from "./pages/Academic";
 import SDG from "./pages/SDG";
@@ -64,6 +65,15 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <Students />
+                </ProtectedRoute>
+              } 
+            />
+            
+            <Route 
+              path="/students/:id" 
+              element={
+                <ProtectedRoute>
+                  <StudentProfile />
                 </ProtectedRoute>
               } 
             />
