@@ -15,6 +15,9 @@ interface AuthContextType {
     secondaryColor: string;
     accentColor: string;
   };
+  // New contact methods
+  sendWhatsAppMessage: (phone: string, message: string) => Promise<boolean>;
+  sendSMS: (phone: string, message: string) => Promise<boolean>;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -27,6 +30,8 @@ const AuthContext = createContext<AuthContextType>({
     secondaryColor: 'amber',
     accentColor: 'teal',
   }),
+  sendWhatsAppMessage: async () => false,
+  sendSMS: async () => false,
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -97,7 +102,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       // Simulate network request
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      const foundUser = mockUsers.find(u => u.email === email);
+      // Fix: Match email case-insensitively
+      const foundUser = mockUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
       
       if (foundUser) {
         setUser(foundUser);
@@ -134,8 +140,64 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.removeItem('opulage-user');
   };
 
+  // WhatsApp messaging function (simulated)
+  const sendWhatsAppMessage = async (phone: string, message: string): Promise<boolean> => {
+    try {
+      // In a real app, you would integrate with WhatsApp Business API
+      // For demo, we'll simulate success
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      toast({
+        title: "WhatsApp message sent",
+        description: `Message sent to ${phone}`,
+      });
+      
+      return true;
+    } catch (error) {
+      toast({
+        title: "Failed to send WhatsApp message",
+        description: "Please try again later",
+        variant: "destructive",
+      });
+      
+      return false;
+    }
+  };
+
+  // SMS messaging function (simulated)
+  const sendSMS = async (phone: string, message: string): Promise<boolean> => {
+    try {
+      // In a real app, you would integrate with an SMS gateway like Twilio, Africa's Talking, etc.
+      // For demo, we'll simulate success
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      toast({
+        title: "SMS sent",
+        description: `Message sent to ${phone}`,
+      });
+      
+      return true;
+    } catch (error) {
+      toast({
+        title: "Failed to send SMS",
+        description: "Please try again later",
+        variant: "destructive",
+      });
+      
+      return false;
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading, getRoleTheme }}>
+    <AuthContext.Provider value={{ 
+      user, 
+      login, 
+      logout, 
+      loading, 
+      getRoleTheme, 
+      sendWhatsAppMessage, 
+      sendSMS 
+    }}>
       {children}
     </AuthContext.Provider>
   );

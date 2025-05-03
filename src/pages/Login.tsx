@@ -1,23 +1,28 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Input } from '@/components/ui/input';
 import { ThemedButton } from '@/components/ui/themed-button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Eye, EyeOff, LogIn } from 'lucide-react';
+import { Eye, EyeOff, LogIn, Phone, MessageSquare } from 'lucide-react';
 import { RoleBadge } from '@/components/ui/role-badge';
 import { UserRole } from '@/types';
+import { useToast } from '@/components/ui/use-toast';
+import { Switch } from '@/components/ui/switch';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
 
 const Login = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('123456'); // Default password for demo
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [selectedRole, setSelectedRole] = useState<UserRole>('teacher');
+  const [communicationPreference, setCommunicationPreference] = useState<'app' | 'whatsapp' | 'sms'>('app');
   const { login } = useAuth();
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   // Default test emails for different roles
   const roleEmails: Record<UserRole, string> = {
@@ -26,6 +31,11 @@ const Login = () => {
     student: 'student@opulage.edu',
     parent: 'parent@opulage.edu'
   };
+
+  // Auto-select demo account on load
+  useEffect(() => {
+    setEmail(roleEmails[selectedRole]);
+  }, []);
 
   const handleRoleSelect = (role: UserRole) => {
     setSelectedRole(role);
@@ -37,9 +47,24 @@ const Login = () => {
     setLoading(true);
     
     try {
+      // Add a console log to debug
+      console.log(`Attempting login with: ${email} (${selectedRole})`);
+      
       const success = await login(email, password);
+      
       if (success) {
         navigate('/dashboard');
+        
+        // Show a toast notification about communication preference
+        if (communicationPreference !== 'app') {
+          toast({
+            title: `${communicationPreference.toUpperCase()} notifications enabled`,
+            description: `You'll receive updates via ${communicationPreference}`,
+          });
+        }
+      } else {
+        // This helps debug the login issue
+        console.error('Login failed. Check if the email matches exactly.');
       }
     } finally {
       setLoading(false);
@@ -115,9 +140,53 @@ const Login = () => {
                   </button>
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  For demo purposes, any password will work with the selected email
+                  Demo password: "123456" (pre-filled for you)
                 </p>
               </div>
+              
+              {/* Communication Preferences - only show for parent role */}
+              {selectedRole === 'parent' && (
+                <div className="bg-gray-50 p-3 rounded-md border space-y-3">
+                  <Label className="font-medium">Communication preferences</Label>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <MessageSquare size={16} />
+                      <span>In-app notifications</span>
+                    </div>
+                    <Switch 
+                      checked={communicationPreference === 'app'} 
+                      onCheckedChange={() => setCommunicationPreference('app')} 
+                    />
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <MessageSquare size={16} />
+                      <span>WhatsApp messages</span>
+                    </div>
+                    <Switch 
+                      checked={communicationPreference === 'whatsapp'} 
+                      onCheckedChange={() => setCommunicationPreference('whatsapp')} 
+                    />
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <Phone size={16} />
+                      <span>SMS messages</span>
+                    </div>
+                    <Switch 
+                      checked={communicationPreference === 'sms'} 
+                      onCheckedChange={() => setCommunicationPreference('sms')} 
+                    />
+                  </div>
+                  
+                  <p className="text-xs text-muted-foreground">
+                    You can change these settings later in your profile
+                  </p>
+                </div>
+              )}
               
               <ThemedButton 
                 type="submit" 

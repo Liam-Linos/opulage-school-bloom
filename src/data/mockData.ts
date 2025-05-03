@@ -10,28 +10,28 @@ export const mockUsers: User[] = [
   { 
     id: 'admin1', 
     name: 'Admin User', 
-    email: 'admin@school.edu', 
+    email: 'admin@opulage.edu', 
     role: 'admin',
     avatar: '/placeholder.svg'
   },
   { 
     id: 'teacher1', 
     name: 'Ms. Johnson', 
-    email: 'johnson@school.edu', 
+    email: 'teacher@opulage.edu', 
     role: 'teacher',
     avatar: '/placeholder.svg'
   },
   { 
     id: 'student1', 
     name: 'Alex Student', 
-    email: 'alex@school.edu', 
+    email: 'student@opulage.edu', 
     role: 'student',
     avatar: '/placeholder.svg'
   },
   { 
     id: 'parent1', 
     name: 'Parent Smith', 
-    email: 'smith@email.com', 
+    email: 'parent@opulage.edu', 
     role: 'parent',
     avatar: '/placeholder.svg'
   },
