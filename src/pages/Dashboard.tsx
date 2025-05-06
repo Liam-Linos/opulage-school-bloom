@@ -1,13 +1,14 @@
 
 import React from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, Users, BookOpen, BarChart2, Bell, ChevronRight, GraduationCap, Clipboard, FileText } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Calendar, Users, BookOpen, BarChart2, Bell, ChevronRight, GraduationCap, Clipboard, FileText, Briefcase, BookOpen as BookOpenIcon, Book, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
 import StatCard from '@/components/dashboard/StatCard';
 import AnnouncementCard from '@/components/dashboard/AnnouncementCard';
 import SDGProgressCard from '@/components/dashboard/SDGProgressCard';
-import { mockAnnouncements, mockAttendanceRecords, mockStudents, mockSDGs, mockSDGInitiatives, mockAcademicRecords } from '@/data/mockData';
+import { mockAnnouncements, mockAttendanceRecords, mockStudents, mockSDGs, mockSDGInitiatives, mockAcademicRecords, mockLessonPlans, mockCareerMatches } from '@/data/mockData';
 import { ThemedButton } from '@/components/ui/themed-button';
 import { Button } from '@/components/ui/button';
 import { RoleBadge } from '@/components/ui/role-badge';
@@ -245,8 +246,8 @@ const TeacherDashboard = ({
           className="border-l-4 border-l-amber-500 hover:shadow-md transition-shadow"
         />
         <StatCard
-          title="Assignments"
-          value={12}
+          title="Lesson Plans"
+          value={mockLessonPlans.length}
           icon={<FileText size={24} className="text-amber-500" />}
           className="border-l-4 border-l-amber-500 hover:shadow-md transition-shadow"
         />
@@ -260,17 +261,64 @@ const TeacherDashboard = ({
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
-          <Card className="border-amber-100 h-full">
+          <Card className="border-amber-100">
             <CardHeader>
-              <CardTitle>Recent Class Activity</CardTitle>
-              <CardDescription>Monitor student engagement and performance</CardDescription>
+              <CardTitle className="flex items-center">
+                <BookOpenIcon className="h-5 w-5 text-amber-500 mr-2" />
+                AI Lesson Planning
+              </CardTitle>
+              <CardDescription>Create personalized lesson plans using AI</CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="p-6 text-center bg-amber-50 rounded-md">
-                <p className="text-muted-foreground">Class Activity Timeline</p>
-                <p className="text-sm text-muted-foreground mt-2">Coming soon - Class activity tracking</p>
+            <CardContent className="space-y-4">
+              <div className="p-4 bg-amber-50 rounded-lg border border-amber-100">
+                <h3 className="font-medium mb-2">How AI Assists Your Teaching</h3>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start">
+                    <div className="h-5 w-5 rounded-full bg-amber-100 flex items-center justify-center mr-2 text-amber-600 flex-shrink-0">
+                      1
+                    </div>
+                    <span>Upload teaching materials or provide links to resources</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="h-5 w-5 rounded-full bg-amber-100 flex items-center justify-center mr-2 text-amber-600 flex-shrink-0">
+                      2
+                    </div>
+                    <span>Describe your lesson objectives and student needs</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="h-5 w-5 rounded-full bg-amber-100 flex items-center justify-center mr-2 text-amber-600 flex-shrink-0">
+                      3
+                    </div>
+                    <span>Let AI create a comprehensive lesson plan tailored to your class</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                {mockLessonPlans.slice(0, 2).map((plan, index) => (
+                  <div key={index} className="p-4 bg-white border border-amber-100 rounded-lg hover:shadow-md transition-shadow">
+                    <h3 className="font-medium mb-1">{plan.title}</h3>
+                    <div className="text-xs text-muted-foreground mb-3">
+                      {plan.subject} • Grade {plan.gradeLevel} • {plan.duration}
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{plan.description}</p>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs bg-amber-50 text-amber-600 px-2 py-0.5 rounded">
+                        {new Date(plan.createdAt).toLocaleDateString()}
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </CardContent>
+            <CardFooter>
+              <Button className="w-full" asChild>
+                <Link to="/lessons">
+                  <GraduationCap className="h-4 w-4 mr-2" />
+                  Create New Lesson Plan
+                </Link>
+              </Button>
+            </CardFooter>
           </Card>
         </div>
         
@@ -300,6 +348,33 @@ const TeacherDashboard = ({
                   </div>
                 ))}
               </div>
+            </CardContent>
+          </Card>
+          
+          <Card className="overflow-hidden border-amber-100">
+            <CardHeader className="bg-gradient-to-r from-amber-50 to-transparent">
+              <div className="flex justify-between items-center">
+                <div>
+                  <CardTitle>SDG Progress</CardTitle>
+                  <CardDescription>Track sustainability goals</CardDescription>
+                </div>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="text-amber-600 hover:text-amber-700 hover:bg-amber-50"
+                >
+                  View all <ChevronRight className="ml-1 h-4 w-4" />
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent className="p-4">
+              {sdgInitiativesWithTitles.slice(0, 1).map(({ initiative, sdgTitle }) => (
+                <SDGProgressCard
+                  key={initiative.id}
+                  initiative={initiative}
+                  sdgTitle={sdgTitle}
+                />
+              ))}
             </CardContent>
           </Card>
         </div>
@@ -339,9 +414,9 @@ const StudentDashboard = ({
           className="border-l-4 border-l-teal-500 hover:shadow-md transition-shadow"
         />
         <StatCard
-          title="SDG Points"
-          value="124"
-          icon={<BarChart2 size={24} className="text-teal-500" />}
+          title="Career Match"
+          value={`${mockCareerMatches[0].matchPercentage}%`}
+          icon={<Briefcase size={24} className="text-teal-500" />}
           className="border-l-4 border-l-teal-500 hover:shadow-md transition-shadow"
         />
       </div>
@@ -350,29 +425,100 @@ const StudentDashboard = ({
         <div className="lg:col-span-2">
           <Card className="border-teal-100">
             <CardHeader>
-              <CardTitle>My Academic Progress</CardTitle>
-              <CardDescription>Track your grades and performance</CardDescription>
+              <CardTitle className="flex items-center gap-2">
+                <Briefcase className="h-5 w-5 text-teal-500" />
+                Career Guidance
+              </CardTitle>
+              <CardDescription>Discover your ideal career path and find mentors</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {studentAcademicRecords.map((record, i) => (
+                <div className="p-4 bg-teal-50 rounded-lg border border-teal-100">
+                  <h3 className="font-medium mb-2">Your Top Career Matches</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {mockCareerMatches.slice(0, 2).map((career, index) => (
+                      <div key={index} className="flex items-start gap-3 p-3 bg-white rounded-md border border-teal-100">
+                        <div className={`h-10 w-10 rounded-full flex items-center justify-center ${
+                          career.matchPercentage >= 90 
+                            ? 'bg-green-100 text-green-600' 
+                            : 'bg-teal-100 text-teal-600'
+                        }`}>
+                          <career.icon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <div className="font-medium">{career.title}</div>
+                          <div className="text-xs text-muted-foreground">Match: {career.matchPercentage}%</div>
+                          <div className="text-xs mt-1">Avg. Salary: {career.salary}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="p-4 bg-teal-50 rounded-lg border border-teal-100">
+                  <h3 className="font-medium mb-2">Recommended Mentor</h3>
+                  <div className="flex items-start gap-3 p-3 bg-white rounded-md border border-teal-100">
+                    <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center">
+                      <Heart className="h-5 w-5 text-teal-600" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium">Dr. James Wilson</div>
+                      <div className="text-xs text-muted-foreground">Senior Software Engineer at TechCorp Inc.</div>
+                      <div className="flex flex-wrap gap-1 mt-2">
+                        <span className="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded">Programming</span>
+                        <span className="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded">Machine Learning</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button className="w-full" asChild>
+                <Link to="/careers">
+                  <Briefcase className="h-4 w-4 mr-2" />
+                  Explore Career Options
+                </Link>
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+        
+        <div className="space-y-6">
+          <Card className="overflow-hidden border-teal-100">
+            <CardHeader className="bg-gradient-to-r from-teal-50 to-transparent">
+              <div className="flex justify-between items-center">
+                <div>
+                  <CardTitle>Academic Progress</CardTitle>
+                  <CardDescription>Your recent grades</CardDescription>
+                </div>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="text-teal-600 hover:text-teal-700 hover:bg-teal-50"
+                >
+                  View all <ChevronRight className="ml-1 h-4 w-4" />
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent className="p-4">
+              <div className="space-y-3">
+                {studentAcademicRecords.slice(0, 3).map((record, i) => (
                   <div key={i} className="flex justify-between items-center p-3 bg-white rounded-md border border-teal-100 hover:bg-teal-50 transition-colors">
                     <div>
                       <div className="font-medium">{record.subject}</div>
-                      <div className="text-sm text-muted-foreground">Term: {record.term}, {record.year}</div>
+                      <div className="text-xs text-muted-foreground">Term: {record.term}</div>
                     </div>
                     <div className="text-right">
                       <div className="font-semibold">{record.grade}</div>
-                      <div className="text-sm text-muted-foreground">{record.score}/{record.maxScore} points</div>
+                      <div className="text-xs text-muted-foreground">{record.score}/{record.maxScore}</div>
                     </div>
                   </div>
                 ))}
               </div>
             </CardContent>
           </Card>
-        </div>
-        
-        <div className="space-y-6">
+
           <Card className="overflow-hidden border-teal-100">
             <CardHeader className="bg-gradient-to-r from-teal-50 to-transparent">
               <div className="flex justify-between items-center">
@@ -398,10 +544,6 @@ const StudentDashboard = ({
                     sdgTitle={sdgTitle}
                   />
                 ))}
-                <div className="p-3 bg-white rounded-md border border-teal-100 hover:bg-teal-50 transition-colors">
-                  <div className="font-medium">SDG Challenge: Recycling Program</div>
-                  <div className="text-sm text-muted-foreground">Your points: 45/100</div>
-                </div>
               </div>
             </CardContent>
           </Card>

@@ -17,6 +17,8 @@ import Academic from "./pages/Academic";
 import SDG from "./pages/SDG";
 import Messages from "./pages/Messages";
 import Settings from "./pages/Settings";
+import AILessonPlanning from "./pages/AILessonPlanning"; // New page
+import CareerGuidance from "./pages/CareerGuidance"; // New page
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -56,6 +58,26 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <Dashboard />
+                </ProtectedRoute>
+              } 
+            />
+            
+            {/* Teacher AI Lesson Planning Route */}
+            <Route 
+              path="/lessons" 
+              element={
+                <ProtectedRoute>
+                  <AILessonPlanning />
+                </ProtectedRoute>
+              } 
+            />
+            
+            {/* Student Career Guidance Route */}
+            <Route 
+              path="/careers" 
+              element={
+                <ProtectedRoute>
+                  <CareerGuidance />
                 </ProtectedRoute>
               } 
             />
