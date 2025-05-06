@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -8,7 +7,7 @@ import Layout from '@/components/layout/Layout';
 import StatCard from '@/components/dashboard/StatCard';
 import AnnouncementCard from '@/components/dashboard/AnnouncementCard';
 import SDGProgressCard from '@/components/dashboard/SDGProgressCard';
-import { mockAnnouncements, mockAttendanceRecords, mockStudents, mockSDGs, mockSDGInitiatives, mockAcademicRecords, mockLessonPlans, mockCareerMatches } from '@/data/mockData';
+import { mockAnnouncements, mockAttendanceRecords, mockStudents, mockSDGs, mockSDGInitiatives, mockAcademicRecords, mockLessonPlans, mockCareerMatches, mockMentors, mockSkillAssessments } from '@/data/mockData';
 import { ThemedButton } from '@/components/ui/themed-button';
 import { Button } from '@/components/ui/button';
 import { RoleBadge } from '@/components/ui/role-badge';
@@ -671,6 +670,170 @@ const ParentDashboard = ({
               </div>
             </CardContent>
           </Card>
+        </div>
+      </div>
+
+      {/* New section: Career Recommendations and Mentors */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+        <div className="lg:col-span-2">
+          <Card className="border-blue-100">
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Briefcase className="h-5 w-5 text-blue-500 mr-2" />
+                Career Recommendations
+              </CardTitle>
+              <CardDescription>Based on your children's academic performance</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
+                      <span className="font-medium text-blue-600">AJ</span>
+                    </div>
+                    <h3 className="font-medium">Alex Johnson's Career Path</h3>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {mockCareerMatches.slice(0, 2).map((career, index) => (
+                      <div key={index} className="flex items-start gap-3 p-3 bg-white rounded-md border border-blue-100">
+                        <div className={`h-10 w-10 rounded-full flex items-center justify-center ${
+                          career.matchPercentage >= 90 
+                            ? 'bg-green-100 text-green-600' 
+                            : 'bg-blue-100 text-blue-600'
+                        }`}>
+                          <career.icon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <div className="font-medium">{career.title}</div>
+                          <div className="text-xs text-muted-foreground">Match: {career.matchPercentage}%</div>
+                          <div className="text-xs mt-1">Avg. Salary: {career.salary}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="mt-3 w-full border-blue-200 text-blue-700 hover:bg-blue-50"
+                  >
+                    View Detailed Career Analysis
+                  </Button>
+                </div>
+                
+                <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
+                      <span className="font-medium text-blue-600">SJ</span>
+                    </div>
+                    <h3 className="font-medium">Sarah Johnson's Career Path</h3>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {mockCareerMatches.slice(2, 4).map((career, index) => (
+                      <div key={index} className="flex items-start gap-3 p-3 bg-white rounded-md border border-blue-100">
+                        <div className={`h-10 w-10 rounded-full flex items-center justify-center ${
+                          career.matchPercentage >= 80 
+                            ? 'bg-green-100 text-green-600' 
+                            : 'bg-blue-100 text-blue-600'
+                        }`}>
+                          <career.icon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <div className="font-medium">{career.title}</div>
+                          <div className="text-xs text-muted-foreground">Match: {career.matchPercentage}%</div>
+                          <div className="text-xs mt-1">Avg. Salary: {career.salary}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="mt-3 w-full border-blue-200 text-blue-700 hover:bg-blue-50"
+                  >
+                    View Detailed Career Analysis
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button className="w-full" asChild>
+                <Link to="/careers">
+                  <Briefcase className="h-4 w-4 mr-2" />
+                  Explore All Career Options
+                </Link>
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+        
+        <div>
+          <Card className="border-blue-100">
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Heart className="h-5 w-5 text-blue-500 mr-2" />
+                Recommended Mentors
+              </CardTitle>
+              <CardDescription>For your children's future careers</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {mockMentors.slice(0, 2).map((mentor, index) => (
+                  <div key={index} className="p-3 border border-blue-100 rounded-lg bg-white hover:bg-blue-50 transition-colors">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center overflow-hidden">
+                        <span className="text-sm font-medium text-blue-600">
+                          {mentor.name.split(' ').map(n => n[0]).join('')}
+                        </span>
+                      </div>
+                      <div>
+                        <div className="font-medium">{mentor.name}</div>
+                        <div className="text-xs text-muted-foreground">{mentor.role} at {mentor.company}</div>
+                        <div className="flex flex-wrap gap-1 mt-2">
+                          {mentor.expertise.slice(0, 2).map((skill, i) => (
+                            <span key={i} className="bg-blue-50 text-blue-700 text-xs px-2 py-0.5 rounded">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-2 pt-2 border-t border-blue-100">
+                      <div className="text-xs text-muted-foreground">Recommended for:</div>
+                      <div className="text-sm">
+                        {index === 0 ? "Alex Johnson" : "Sarah Johnson"}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="w-full border-blue-200 text-blue-700 hover:bg-blue-50"
+                >
+                  Find More Mentors
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <div className="mt-4">
+            <Card className="border-blue-100">
+              <CardHeader>
+                <CardTitle>Skills Assessment</CardTitle>
+                <CardDescription>Monitor your children's skill development</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {mockSkillAssessments.slice(0, 2).map((assessment, index) => (
+                  <SkillAssessmentCard 
+                    key={index} 
+                    assessment={assessment} 
+                    variant="parent"
+                  />
+                ))}
+              </div>
+            </Card>
+          </div>
         </div>
       </div>
     </>
