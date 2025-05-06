@@ -11,6 +11,7 @@ import { mockAnnouncements, mockAttendanceRecords, mockStudents, mockSDGs, mockS
 import { ThemedButton } from '@/components/ui/themed-button';
 import { Button } from '@/components/ui/button';
 import { RoleBadge } from '@/components/ui/role-badge';
+import SkillAssessmentCard from '@/components/careers/SkillAssessmentCard';
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -831,7 +832,7 @@ const ParentDashboard = ({
                     variant="parent"
                   />
                 ))}
-              </div>
+              </CardContent>
             </Card>
           </div>
         </div>
