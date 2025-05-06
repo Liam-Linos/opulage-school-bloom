@@ -1,14 +1,15 @@
 
-# Opulage Sustainable Schools Manager
+# Opulage Bridge
 
-A full-stack, open-source web application for managing primary and secondary schools in developing countries, with integrated Sustainable Development Goals (SDGs) tracking.
+A full-stack, open-source web application for connecting education and careers with AI-powered tools for lesson planning, career guidance, and mentor matching.
 
 ## Features
 
-- 🏫 **School Management**: Student records, teacher/staff profiles, class management
-- 📊 **Attendance Tracking**: Record and monitor attendance for students and staff
-- 📝 **Academic Performance**: Track and report on student academic progress
+- 🧠 **AI Lesson Planning**: Intelligent curriculum creation for teachers
+- 🧭 **Career Guidance**: Student skill assessment and career path recommendation
+- 👨‍🏫 **Mentor Matching**: Connect students with ideal mentors based on skills and interests
 - 🌱 **SDG Tracking**: Set sustainability goals and monitor progress
+- 📊 **Performance Analytics**: Track student progress and identify strengths
 - 📱 **Responsive Design**: Works on desktop and mobile devices
 - 🔒 **Role-Based Access**: Different views for administrators, teachers, students, and parents
 
@@ -28,12 +29,12 @@ A full-stack, open-source web application for managing primary and secondary sch
 
 1. Clone the repository
    ```
-   git clone https://github.com/yourusername/opulage-schools.git
+   git clone https://github.com/yourusername/opulage-bridge.git
    ```
 
 2. Navigate to project directory
    ```
-   cd opulage-schools
+   cd opulage-bridge
    ```
 
 3. Install dependencies
@@ -52,10 +53,10 @@ A full-stack, open-source web application for managing primary and secondary sch
 
 For testing purposes, you can use the following demo accounts:
 
-- **Admin**: admin@school.edu (password: password)
-- **Teacher**: johnson@school.edu (password: password)
-- **Student**: alex@school.edu (password: password)
-- **Parent**: smith@email.com (password: password)
+- **Admin**: admin@school.edu (password: 123456)
+- **Teacher**: teacher@school.edu (password: 123456)
+- **Student**: student@school.edu (password: 123456)
+- **Parent**: parent@school.edu (password: 123456)
 
 ## Project Structure
 

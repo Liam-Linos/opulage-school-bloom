@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { Users, Calendar, BarChart2 } from 'lucide-react';
+import { Users, Calendar, BarChart2, GraduationCap, BookOpen, Heart } from 'lucide-react';
 
 const Home = () => {
   const { user } = useAuth();
@@ -16,10 +16,10 @@ const Home = () => {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-6">
               <h1 className="text-3xl md:text-5xl font-bold leading-tight">
-                Opulage Sustainable Schools Manager
+                Opulage Bridge
               </h1>
               <p className="text-lg md:text-xl opacity-90">
-                Empowering schools in developing countries with tools to manage education and track sustainable development goals.
+                Bridging education and careers with AI-powered lesson planning, student-mentor matching, and personalized career guidance.
               </p>
               <div className="flex flex-wrap gap-4">
                 {user ? (
@@ -39,7 +39,7 @@ const Home = () => {
             <div className="hidden md:block">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 shadow-xl">
                 <div className="aspect-video bg-forest-800/30 rounded-md flex items-center justify-center">
-                  <span className="text-6xl">🏫</span>
+                  <span className="text-6xl">🌉</span>
                 </div>
               </div>
             </div>
@@ -54,24 +54,24 @@ const Home = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="w-12 h-12 bg-forest-100 text-forest-700 rounded-full flex items-center justify-center mb-4">
-                <Users className="w-6 h-6" />
+                <BookOpen className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Student & Staff Management</h3>
-              <p className="text-gray-600">Complete profiles for students, teachers, and staff with role-based access.</p>
+              <h3 className="text-xl font-semibold mb-2">AI Lesson Planning</h3>
+              <p className="text-gray-600">Intelligent lesson creation and curriculum planning tailored for each class's unique needs.</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="w-12 h-12 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center mb-4">
-                <Calendar className="w-6 h-6" />
+                <GraduationCap className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Attendance Tracking</h3>
-              <p className="text-gray-600">Monitor student and teacher attendance with detailed reporting.</p>
+              <h3 className="text-xl font-semibold mb-2">Career Guidance</h3>
+              <p className="text-gray-600">Personalized career path discovery through adaptive assessments and skill analysis.</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="w-12 h-12 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center mb-4">
-                <BarChart2 className="w-6 h-6" />
+                <Heart className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">SDG Progress Tracking</h3>
-              <p className="text-gray-600">Set sustainability goals and monitor progress toward achieving them.</p>
+              <h3 className="text-xl font-semibold mb-2">Mentor Matching</h3>
+              <p className="text-gray-600">Connect students with ideal mentors based on interests, skills, and career goals.</p>
             </div>
           </div>
         </div>
@@ -103,7 +103,7 @@ const Home = () => {
       <section className="py-16 bg-forest-500 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to transform your school?</h2>
-          <p className="text-xl mb-8 opacity-90">Join thousands of schools worldwide using Opulage to manage education sustainably</p>
+          <p className="text-xl mb-8 opacity-90">Join thousands of schools using Opulage Bridge to empower education and shape future careers</p>
           <Button size="lg" className="bg-white text-forest-700 hover:bg-gray-100" asChild>
             <Link to="/login">Get Started Today</Link>
           </Button>
@@ -115,15 +115,15 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Opulage Schools</h3>
-              <p className="text-gray-300">Sustainable education management for a better future</p>
+              <h3 className="text-xl font-bold mb-4">Opulage Bridge</h3>
+              <p className="text-gray-300">AI-powered education and career pathways</p>
             </div>
             <div>
               <h4 className="font-semibold mb-3">Features</h4>
               <ul className="space-y-2 text-gray-300">
-                <li>Student Management</li>
-                <li>Attendance Tracking</li>
-                <li>Academic Records</li>
+                <li>AI Lesson Planning</li>
+                <li>Career Guidance</li>
+                <li>Mentor Matching</li>
                 <li>SDG Monitoring</li>
               </ul>
             </div>
@@ -147,7 +147,7 @@ const Home = () => {
             </div>
           </div>
           <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-            <p className="text-gray-300">© 2024 Opulage Sustainable Schools. Open source software.</p>
+            <p className="text-gray-300">© 2024 Opulage Bridge. Open source software.</p>
           </div>
         </div>
       </footer>

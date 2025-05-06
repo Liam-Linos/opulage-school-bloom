@@ -74,8 +74,8 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-forest-50 to-gray-100 p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-forest-700 mb-2">Opulage Schools</h1>
-          <p className="text-gray-600">Sustainable education management</p>
+          <h1 className="text-3xl font-bold text-forest-700 mb-2">Opulage Bridge</h1>
+          <p className="text-gray-600">AI-powered education and career pathways</p>
         </div>
         
         <Card className="border-forest-100">
